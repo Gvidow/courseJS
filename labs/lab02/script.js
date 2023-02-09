@@ -33,6 +33,25 @@ window.onload = function(){
             onDigitButtonClicked(digitValue)
         }
     });
+    document.getElementById("back").onclick = function() {
+        if (!selectedOperation) {
+            if (a.length > 1) {
+                a = a.slice(0, -1)
+                outputElement.textContent = a
+            } else {
+                a = ''
+                outputElement.textContent = '0'
+            }
+        } else {
+            if (b.length > 1) {
+                b = b.slice(0, -1)
+                outputElement.textContent = b
+            } else {
+                b = ''
+                outputElement.textContent = '0'
+            }
+        }
+    }
     
     // установка колбек-функций для кнопок операций
     document.getElementById("btn_op_mult").onclick = function() { 
