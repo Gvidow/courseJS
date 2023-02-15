@@ -1,4 +1,11 @@
 /* опишем базовый стиль кнопки калькулятора */
+#calculate {
+  display: flex;
+  justify-content: center;
+}
+body {
+  background: linear-gradient(90deg,#01ffea, #ff00c8);
+}
 #back {
   width: 50px;
   height: 50px;
@@ -40,7 +47,7 @@
   
   /* селектор для кнопок первостепенных операций */
   .my-btn.primary { 
-    background: #ff9801; /* цвет кнопки оранжевый */
+    background: linear-gradient(30deg, #ff9101, #f6fa059c); /*цвет кнопки оранжевый */
   }
   
   /* селектор для кнопок второстепенных операций */
