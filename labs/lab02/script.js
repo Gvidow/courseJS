@@ -14,13 +14,21 @@ window.onload = function(){
     
     function onDigitButtonClicked(digit) {
         if (!selectedOperation) {
-            if ((digit != '.') || (digit == '.' && !a.includes(digit))) { 
-                a += digit
+            if ((digit != '.') || (digit == '.' && !a.includes(digit))) {
+                if (a.length > 0 && a[0] === '0') {
+                    a = digit
+                } else {
+                    a += digit
+                }
             }
             outputElement.innerHTML = a
         } else {
             if ((digit != '.') || (digit == '.' && !b.includes(digit))) { 
-                b += digit
+                if (b.length > 0 && b[0] === '0') {
+                    b = digit
+                } else {
+                    b += digit
+                }
                 outputElement.innerHTML = b        
             }
         }
