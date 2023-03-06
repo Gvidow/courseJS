@@ -11,7 +11,7 @@ function flatten(arr) {
 }
 
 function flatten2(arr, l, r) {
-    if (r - l == 1) {
+    if (r - l === 1) {
         if (Array.isArray(arr[l])) {
             return flatten2(arr[l], 0, arr[l].length);
         } else {
