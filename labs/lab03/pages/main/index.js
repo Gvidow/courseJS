@@ -5,6 +5,7 @@ import {ProductPage} from "../product/index.js";
 export class MainPage {
     constructor(parent) {
         this.parent = parent;
+        this.data = 0;
     }
 
     getData() {
@@ -13,6 +14,7 @@ export class MainPage {
                 id: 1,
                 src: "components/pictures/sf-tmb-678x509.jpg",
                 title: "Шотландская вислоухая",
+                counter: 0,
                 text: "Данная порода во всем мире именуется как «Scottish Fold», но нам привычней называть их «шотландскими вислоухими».",
                 info: `<p>Эти кошки имеют настолько уникальную внешность, что любая путаница исключается:</p>
                 <ul>
@@ -27,6 +29,7 @@ export class MainPage {
                 id: 2,
                 src: "components/pictures/rb-1-678x509.jpg",
                 title: "Русская голубая",
+                counter: 0,
                 text: "Эта порода выделяется среди остальных серебристо-голубым окрасом и пронзительно-зеленым цветом глаз.",
                 info: `
                 <p>Какие отличия у представителей русских голубых кошек, кроме изумительного окраса?</p>
@@ -41,6 +44,7 @@ export class MainPage {
                 id: 3,
                 src: "components/pictures/bengal-3-678x509.jpg",
                 title: "Бенгельская кошка",
+                counter: 0,
                 text: "«Домашние леопарды» – именно так люди называют кошек бенгальской породы.",
                 info: `<p>Как правило, стандарт бенгальской породы выделяет следующие варианты окраса:</p>
                 <ul><li><strong>Коричневый табби</strong> – классический леопардовый окрас, допускающий все
@@ -57,6 +61,7 @@ export class MainPage {
                 id: 4,
                 src: "components/pictures/siamese-tmb-678x509.jpg",
                 title: "Сиамская кошка",
+                counter: 0,
                 text: "Сиамская кошка всегда выделялась на фоне своих сородичей грациозностью и величественным характером.",
                 info: `<p>Вообще, встречаются разнообразные окрасы сиамских кошек, однако наиболее популярными из них являются:</p>
                 <ul><li><strong>Сил-поинт</strong> – кремовый или светло-коричневый окрас, при котором поинты, как правило, имеют насыщенный темно-коричневый цвет.</li><li><strong>Карамель-поинт </strong>– нечто среднее между коричневым и белым, а темные участки отличаются розово-серыми тонами.</li><li><strong>Блю-поинт </strong>– шерсть выделяется снежно-белым окрасом, подчеркнутым красивыми голубоватыми отметинами. </li><li><strong>Ред-поинт</strong> – основной белый окрас, украшенный рыжими, абрикосовыми или красноватыми поинтами.</li><li><strong>Лалайк-поинт</strong> – белая шерсть, которая разбавлена серыми участками с легким розоватым переливом.</li><li><strong>Шоколад-поинт </strong>– шерсть окрашена в цвет слоновой кости с шоколадными участками (они могут быть настолько темными, что воспринимаются черными). </li></ul>`
@@ -77,8 +82,17 @@ export class MainPage {
     }
     clickCard(data) {
         return (e) => {
+        data.counter = data.counter + 1;
         const cardId = e.target.dataset.id
         const productPage = new ProductPage(this.parent, data);
+        productPage.render()};
+    }
+
+    clickCard(data) {
+        return (e) => {
+        data.counter = data.counter + 1;
+        const cardId = e.target.dataset.id
+        const productPage = new ProductPage(this, data);
         productPage.render()};
     }
     render() {
@@ -86,8 +100,10 @@ export class MainPage {
         const html = this.getHTML();
         this.parent.insertAdjacentHTML('beforeend', html)
     
-        const data = this.getData();
-        data.forEach((item) => {
+        if (this.data === 0) {
+            this.data = this.getData();
+        }
+        this.data.forEach((item) => {
         const productCard = new ProductCardComponent(this.pageRoot)
         productCard.render(item, this.clickCard(item));
     })

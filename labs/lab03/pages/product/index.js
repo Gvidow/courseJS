@@ -31,13 +31,12 @@ export class ProductPage {
             .addEventListener("click", this.clickHome.bind(this));
     }
     clickHome() {
-        const mainPage = new MainPage(this.parent)
-        mainPage.render()
+        this.parent.render()
     }
     render() {
-        this.parent.innerHTML = ''
+        this.parent.parent.innerHTML = ''
         const html = this.getHTML()
-        this.parent.insertAdjacentHTML('beforeend', html)
+        this.parent.parent.insertAdjacentHTML('beforeend', html)
         const backButton = new BackButtonComponent(this.pageRoot)
         backButton.render(this.clickBack.bind(this));
         const data = this.getData

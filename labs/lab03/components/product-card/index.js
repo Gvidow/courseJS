@@ -11,7 +11,10 @@ export class ProductCardComponent {
                     <div class="card-body">
                         <h5 class="card-title">${data.title}</h5>
                         <div style="height: 120px"><p class="card-text">${data.text}</p></div>
-                        <button class="btn btn-primary" id="click-card-${data.id}" data-id="${data.id}">Подробнее</button>
+                        <button class="btn btn-primary" id="click-card-${data.id}" data-id="${data.id}">
+                        <p style="margin: 0px; height: auto; font-size: 0.5rem; float:right; border: 2px; margin-left: 4px;">${data.counter}</p>
+                        Подробнее
+                        </button>
                     </div>
                 </div>
             `
