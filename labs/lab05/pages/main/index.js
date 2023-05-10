@@ -11,7 +11,7 @@ export class MainPage {
         this.data = 0;
     }
 
-    getData() {
+    async getData() {
         ajax.post(urls.getGroupMembers(groupId), (data) => {
             this.renderData(data.response.items);
         });
@@ -50,11 +50,11 @@ export class MainPage {
         const productPage = new ProductPage(this, data);
         productPage.render()};
     }
-    render() {
+    async render() {
         this.parent.innerHTML = ''
         const html = this.getHTML()
         this.parent.insertAdjacentHTML('beforeend', html)
         
-        this.getData()
+        await this.getData()
     }
 }
